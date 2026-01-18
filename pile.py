@@ -9,3 +9,47 @@ class Pile:
 
         self.taille = taille # Taille de la pile
         self.contenu = [] # Contenu de la pile
+
+
+    def est_vide(self) -> bool:
+        """Renvoie True si la pile est vide, False sinon."""
+        return len(self.contenu) == 0
+
+    def est_pleine(self) -> bool:
+        """Renvoie True si la pile est pleine, False sinon."""
+        return len(self.contenu) == self.taille
+
+
+    def empiler(self, disque:int) -> None:
+        """Empile le disque donné en paramètre au sommet de la pile."""
+
+        assert not self.est_pleine(), "Impossible d'empiler dans une pile déjà pleine."
+
+        self.contenu.append(disque)
+
+
+    def depiler(self) -> int:
+        """Dépile le disque au sommet de la pile et renvoie son poids."""
+
+        assert not self.est_vide(), "Impossible de dépiler depuis une pile vide."
+
+        disque = self.contenu[-1]
+        del self.contenu[-1]
+
+        return disque
+
+    def __repr__(self) -> str:
+
+        rep = "--"
+
+        for i in range(self.taille):
+            if i in range(len(self.contenu)):
+                rep += f"\n {self.contenu[i]}"
+
+            else:
+                self.contenu += "\n-"    
+
+
+        return rep    
+
+    
