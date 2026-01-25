@@ -33,8 +33,8 @@ class Pile:
 
         assert not self.est_vide(), "Impossible de dépiler depuis une pile vide."
 
-        disque = self.contenu[-1]
-        del self.contenu[-1]
+        disque = self.contenu[0]
+        del self.contenu[0]
 
         return disque
 
@@ -47,7 +47,7 @@ class Pile:
                 rep += f"\n {self.contenu[i]}"
 
             else:
-                self.contenu += "\n-"    
+                rep += "\n-"    
 
 
         return rep    
