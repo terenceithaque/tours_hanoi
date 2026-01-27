@@ -1,4 +1,5 @@
 # Script gérant les piles
+from pygame import *
 
 class Pile:
     """Une pile servant à la représentation d'une colonne du jeu des tours de HanoÏ."""
@@ -37,6 +38,7 @@ class Pile:
         del self.contenu[0]
 
         return disque
+    
 
     def __repr__(self) -> str:
 

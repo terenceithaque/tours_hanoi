@@ -42,6 +42,8 @@ class Jeu:
         # Boucle prinicipale
         while execution:
 
+            self.fenetre.fill((255, 255, 255))
+
             for evenement in pygame.event.get():
                 if evenement.type == pygame.QUIT:
                     execution = False
