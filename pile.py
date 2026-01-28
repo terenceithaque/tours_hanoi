@@ -1,15 +1,22 @@
 # Script gérant les piles
-from pygame import *
+import pygame
 
 class Pile:
     """Une pile servant à la représentation d'une colonne du jeu des tours de HanoÏ."""
 
-    def __init__(self, taille:int=5):
+    def __init__(self, taille:int=5, x:int=0, y:int=0):
         """Initialise la pile.
-        - taille: taille maximale de la pile (nombre maximum d'éléments qu'elle peut contenir.)"""
+        - taille: taille maximale de la pile (nombre maximum d'éléments qu'elle peut contenir.)
+        - x: position en x de la pile
+        - y: position en y de la pile"""
 
         self.taille = taille # Taille de la pile
         self.contenu = [] # Contenu de la pile
+
+        self.x = x
+        self.y = y
+
+        self.rect = pygame.Rect(x, y)
 
 
     def est_vide(self) -> bool:
@@ -38,6 +45,34 @@ class Pile:
         del self.contenu[0]
 
         return disque
+    
+
+    def afficher(self, fenetre:pygame.Surface) -> None:
+        """Affiche la pile dans une fenêtre pygame."""
+
+        largeur = 100
+        hauteur = 40
+        espace = 5
+
+        for i in range(self.taille):
+            rect_y = self.y - i * (hauteur + espace)
+
+            rect = pygame.Rect(self.x, rect_y, largeur, hauteur)
+            pygame.draw.rect(fenetre, (180, 180, 180), rect)
+            pygame.draw.rect(fenetre, (0, 0, 0), rect, 2)
+            
+            if i in range(len(self.contenu)):
+                
+                # Optionnel : afficher la valeur
+                valeur = self.contenu[i]
+                font = pygame.font.Font(None, 30)
+                texte = font.render(str(valeur), True, (0, 0, 0))
+                fenetre.blit(
+                    texte,
+                    texte.get_rect(center=rect.center)
+                ) 
+
+
     
 
     def __repr__(self) -> str:

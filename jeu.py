@@ -27,9 +27,13 @@ class Jeu:
         # Créer les colonnes et insérer les disques dedans
         colonnes = []
 
+        x_col = 50
+        y_col = 200
+
         for i in range(self.nb_colonnes):
-            col = Pile(self.nb_disques)
+            col = Pile(self.nb_disques, x_col, y_col)
             colonnes.append(col)
+            x_col += 100
 
 
 
@@ -47,6 +51,9 @@ class Jeu:
             for evenement in pygame.event.get():
                 if evenement.type == pygame.QUIT:
                     execution = False
+
+                if evenement.type == pygame.MOUSEMOTION:
+                    print(pygame.mouse.get_pos())    
 
 
             """
@@ -90,6 +97,12 @@ class Jeu:
 
             else:
                 colonne_arrivee.empiler(disque_depart)"""
+
+
+
+    
+            for colonne in colonnes:
+                colonne.afficher(self.fenetre)
 
 
             pygame.display.flip()             
