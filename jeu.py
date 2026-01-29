@@ -1,5 +1,6 @@
 # Programme du jeu
 from pile import *
+from tkinter import messagebox
 import pygame
 pygame.init()
 
@@ -41,20 +42,70 @@ class Jeu:
             colonnes[0].empiler(n)
 
 
-        execution = True    
+        execution = True
+
+        disque_actuel = None # Disque actuel (dernier dépilé)
+
+        affichage_numero_col = pygame.font.Font(None, 30)
+
+        extraction_disque = pygame.USEREVENT + 1 
+        depos_disque = pygame.USEREVENT + 2
+
+        pygame.time.set_timer(extraction_disque, 100)
+        pygame.time.set_timer(depos_disque, 100)
+
+
 
         # Boucle prinicipale
         while execution:
 
+            #print(pygame.mouse.get_pressed())
+
             self.fenetre.fill((255, 255, 255))
+
+            pos_souris = pygame.mouse.get_pos()
+
+            rect_souris = pygame.Rect(pos_souris[0], pos_souris[1], pos_souris[0] + 5, pos_souris[1] + 5)
 
             for evenement in pygame.event.get():
                 if evenement.type == pygame.QUIT:
                     execution = False
 
                 if evenement.type == pygame.MOUSEMOTION:
-                    print(pygame.mouse.get_pos())    
+                    print(pygame.mouse.get_pos())
+                    
 
+            
+            if pygame.mouse.get_pressed()[0]:
+
+                    print("Clic à gauche !")
+                    if disque_actuel is None:
+                        cols_cibles = [col for col in colonnes if rect_souris.colliderect(col.rect)]
+
+                        print("Colonnes cibles :", cols_cibles)
+                        if len(cols_cibles) > 0:
+                            if not cols_cibles[0].est_vide():
+                                disque_actuel = cols_cibles[0].depiler()
+                                print("Disque actuel :", disque_actuel)
+
+                            else:
+                                print("Impossible d'extraire ! Colonne vide.")    
+
+                    else:
+                        cols_cibles = [col for col in colonnes if rect_souris.colliderect(col.rect)]
+
+                        print("Colonnes cibles :", cols_cibles)
+                        if len(cols_cibles) > 0:
+                            if not cols_cibles[0].est_pleine():
+                                cols_cibles[0].empiler(disque_actuel)
+                                disque_actuel = None
+
+                            else:
+                                print("Impossible de poser ! Colonne pleine.")  
+
+
+
+                            
 
             """
             # Colonnes depuis lesquelles le joueur peut effectuer un mouvement
@@ -99,6 +150,13 @@ class Jeu:
                 colonne_arrivee.empiler(disque_depart)"""
 
 
+
+            for i, colonne in enumerate(colonnes):
+                    if rect_souris.colliderect(colonne.rect):
+
+                        #messagebox.showinfo(f"Colonne n°{i+1}", f"Colonne n°{i+1}")
+                        n_col = affichage_numero_col.render(f"{i + 1}", False, (255, 0, 0))
+                        self.fenetre.blit(n_col, (pos_souris[0], pos_souris[1] + 50))
 
     
             for colonne in colonnes:

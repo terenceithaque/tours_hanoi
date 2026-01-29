@@ -16,7 +16,10 @@ class Pile:
         self.x = x
         self.y = y
 
-        self.rect = pygame.Rect(x, y)
+        self.largeur = 120
+        self.hauteur = 300
+
+        self.rect = pygame.Rect((x - self.largeur // 2, y - self.hauteur), (self.largeur, self.hauteur))
 
 
     def est_vide(self) -> bool:
@@ -41,8 +44,7 @@ class Pile:
 
         assert not self.est_vide(), "Impossible de dépiler depuis une pile vide."
 
-        disque = self.contenu[0]
-        del self.contenu[0]
+        disque = self.contenu.pop()
 
         return disque
     
@@ -75,7 +77,7 @@ class Pile:
 
     
 
-    def __repr__(self) -> str:
+    """def __repr__(self) -> str:
 
         rep = "--"
 
@@ -87,6 +89,6 @@ class Pile:
                 rep += "\n-"    
 
 
-        return rep    
+        return rep"""    
 
     
