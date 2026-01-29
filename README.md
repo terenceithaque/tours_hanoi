@@ -16,3 +16,4 @@ Les colonnes sont modélisées par des piles. Elles possèdent donc les méthode
 - depiler(): retire l'élément situé au sommet de la pile et le renvoie
 - est_vide(): renvoie le booléen indiquant si la pile est vide ou non
 - est_pleine(): renvoie le booléen indiquant si la pile est pleine ou non
+- sommet(): renvoie l'élément au sommet de la pile sans le dépiler
