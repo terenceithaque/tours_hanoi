@@ -97,8 +97,21 @@ class Jeu:
                         print("Colonnes cibles :", cols_cibles)
                         if len(cols_cibles) > 0:
                             if not cols_cibles[0].est_pleine():
-                                cols_cibles[0].empiler(disque_actuel)
-                                disque_actuel = None
+                                
+                                sommet = cols_cibles[0].sommet()
+
+                                if sommet is not None:
+                                    if sommet > disque_actuel:
+                                        messagebox.showerror("Déplacement illégal !", "Impossible de placer un disque au-dessus d'un disque de valeur supérieure.")
+                                    
+                                    else:
+                                        cols_cibles[0].empiler(disque_actuel)
+                                        disque_actuel = None
+
+
+                                else:
+                                    cols_cibles[0].empiler(disque_actuel)
+                                    disque_actuel = None        
 
                             else:
                                 print("Impossible de poser ! Colonne pleine.")  

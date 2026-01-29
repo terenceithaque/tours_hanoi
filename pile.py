@@ -39,6 +39,16 @@ class Pile:
         self.contenu.append(disque)
 
 
+    def sommet(self) -> int|None:
+        """Renvoie l'élément au sommet de la pile. Si la pile est vide, renvoie None."""
+
+        if self.est_vide():
+            return None
+
+
+        return self.contenu[-1]    
+
+
     def depiler(self) -> int:
         """Dépile le disque au sommet de la pile et renvoie son poids."""
 
