@@ -59,6 +59,12 @@ class Jeu:
         # Boucle prinicipale
         while execution:
 
+
+            if colonnes[-1].est_pleine():
+                messagebox.showinfo("Félicitiations !", "Vous avez déplacé correctement les disques. Félicitations !")
+                execution = False
+
+                
             #print(pygame.mouse.get_pressed())
 
             self.fenetre.fill((255, 255, 255))
