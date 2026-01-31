@@ -17,7 +17,35 @@ class Jeu:
         # Nombre de colonnes et de disques
         self.nb_colonnes = nb_colonnes
         self.nb_disques = nb_disques
+        self.police_timer = pygame.font.Font(None, 36)
 
+
+    def afficher_timer(self, duree_secondes:int) -> None:
+        """Affiche le timer de jeu donné en secondes et converti en minutes."""
+
+        # Convertir la durée en minutes
+        duree_minutes = secondes_en_minutes(duree_secondes)
+
+
+        minutes = duree_minutes[0] # Nombre de minutes
+        secondes = duree_minutes[1] # Nombre de secondes
+
+        if minutes < 10:
+            if secondes < 10: 
+                texte_timer = self.police_timer.render(f"0{minutes} : 0{secondes}", False, (128, 128, 128))
+
+            else:
+                texte_timer = self.police_timer.render(f"0{minutes} : {secondes}", False, (128, 128, 128))
+
+
+        else:
+            if secondes < 10: 
+                texte_timer = self.police_timer.render(f"{minutes} : 0{secondes}", False, (128, 128, 128))
+
+            else:
+                texte_timer = self.police_timer.render(f"{minutes} : {secondes}", False, (128, 128, 128))         
+
+        self.fenetre.blit(texte_timer, (0, 300))
 
     def executer(self) -> None:
         """Lance la boucle de jeu"""
@@ -186,6 +214,10 @@ class Jeu:
     
             for colonne in colonnes:
                 colonne.afficher(self.fenetre)
+
+
+            # Afficher le timer
+            self.afficher_timer(timer_secondes)    
 
 
             pygame.display.flip()             
