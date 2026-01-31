@@ -1,5 +1,6 @@
 # Programme du jeu
 from pile import *
+from gestion_timer import *
 from tkinter import messagebox
 import pygame
 pygame.init()
@@ -82,7 +83,8 @@ class Jeu:
                 # Incrémentation du timer
                 if evenement.type == increment_timer:
                     timer_secondes += 1
-                    print(f"Timer : {timer_secondes}")    
+                    print(f"Timer (secondes) : {timer_secondes}")
+                    print(f"Timer (minutes et secondes) : {secondes_en_minutes(timer_secondes)}")    
                     
 
             
