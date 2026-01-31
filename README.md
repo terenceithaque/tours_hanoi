@@ -3,7 +3,7 @@ Ce jeu est une implémentation des tours de Hanoï avec des piles.
 # Règles du jeu
 
 Le jeu est configuré selon un certain nombre de disques de poids croissants et un certain nombre de colonnes.
-Le but du jeu est de déplacer tous les disques de la colonne de départ à celle d'arrivée par ordre décroissant de poids. Pour cela, il faut utiliser les colonnes intermédiaires. ATTENTION: il est interdit de placer un disque sur un autre dont la valeur est plus grande.
+Le but du jeu est de déplacer tous les disques de la colonne de départ à celle d'arrivée par ordre décroissant de poids (poids le plus grand en bas, poids le plus petit en haut). Pour cela, il faut utiliser les colonnes intermédiaires. ATTENTION: il est interdit de placer un disque sur un autre dont la valeur est plus petite.
 
 Il est possible de modifier le nombre de colonnes et de disques afin de modifier la difficulté.
 

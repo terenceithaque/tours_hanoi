@@ -38,7 +38,7 @@ class Jeu:
 
 
 
-        for n in range(1, self.nb_disques + 1):
+        for n in range(self.nb_disques, 0, -1):
             colonnes[0].empiler(n)
 
 
@@ -107,8 +107,8 @@ class Jeu:
                                 sommet = cols_cibles[0].sommet()
 
                                 if sommet is not None:
-                                    if sommet > disque_actuel:
-                                        messagebox.showerror("Déplacement illégal !", "Impossible de placer un disque au-dessus d'un disque de valeur supérieure.")
+                                    if sommet < disque_actuel:
+                                        messagebox.showerror("Déplacement illégal !", "Impossible de placer un disque au-dessus d'un disque de valeur inférieure.")
                                     
                                     else:
                                         cols_cibles[0].empiler(disque_actuel)
