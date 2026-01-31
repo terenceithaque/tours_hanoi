@@ -48,12 +48,11 @@ class Jeu:
 
         affichage_numero_col = pygame.font.Font(None, 30)
 
-        extraction_disque = pygame.USEREVENT + 1 
-        depos_disque = pygame.USEREVENT + 2
+        timer_secondes = 0 # Timer du jeu en secondes
 
-        pygame.time.set_timer(extraction_disque, 100)
-        pygame.time.set_timer(depos_disque, 100)
+        increment_timer = pygame.USEREVENT + 1 # Événement d'incrémentation du timer
 
+        pygame.time.set_timer(increment_timer, 1000) # Incrémenter le timer à chaque seconde écoulée
 
 
         # Boucle prinicipale
@@ -79,6 +78,11 @@ class Jeu:
 
                 if evenement.type == pygame.MOUSEMOTION:
                     print(pygame.mouse.get_pos())
+
+                # Incrémentation du timer
+                if evenement.type == increment_timer:
+                    timer_secondes += 1
+                    print(f"Timer : {timer_secondes}")    
                     
 
             
