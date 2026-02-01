@@ -79,6 +79,9 @@ class Jeu:
 
         timer_secondes = 0 # Timer du jeu en secondes
 
+        # Récupérer le meilleur timer enregistré en fonction du nombre de colonnes et de disques entré par le joueur
+        meilleur_timer = obtenir_timer(self.nb_colonnes, self.nb_disques)
+
         increment_timer = pygame.USEREVENT + 1 # Événement d'incrémentation du timer
 
         pygame.time.set_timer(increment_timer, 1000) # Incrémenter le timer à chaque seconde écoulée
@@ -90,6 +93,11 @@ class Jeu:
 
             if colonnes[-1].est_pleine():
                 messagebox.showinfo("Félicitiations !", "Vous avez déplacé correctement les disques. Félicitations !")
+
+                if timer_secondes < meilleur_timer or meilleur_timer == 0:
+                    enregistrer_timer(self.nb_colonnes, self.nb_disques, timer_secondes)
+
+
                 execution = False
 
                 
