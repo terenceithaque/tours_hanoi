@@ -23,6 +23,7 @@ def ouvrir_fichier_timers() :
     """Ouvre le fichier timers.json et renvoie son contenu au format JSON."""
 
     chemin_fichier = chemin_absolu("timers.json")
+    print(chemin_fichier)
 
     print(chemin_fichier)
     
@@ -35,11 +36,9 @@ def obtenir_timer(nb_colonnes:int=5, nb_disques:int=5):
     En cas d'erreur, la fonction renvoie 0."""
 
     try:
-        chemin_fichier_timer = chemin_absolu("timers.json") # Chemin du fichier "timers.json"
         # Ouvrir le fichier et en extraire le contenu
-        with open(chemin_fichier_timer, "r") as f:
-            contenu = json.load(f)
-            return contenu[f"{nb_colonnes}, {nb_disques}"]
+        contenu = ouvrir_fichier_timers()
+        return contenu[f"{nb_colonnes}, {nb_disques}"]
         
 
     except:
@@ -58,7 +57,7 @@ def enregistrer_timer(nb_colonnes:int=5, nb_disques:int=5, timer:int=0) -> None:
     # Lire le contenu du fichier
     try:
         with open(chemin_fichier_timer,"r") as f:
-            contenu = json.load(f)
+            contenu = ouvrir_fichier_timers()
 
     except:
         contenu = {}
